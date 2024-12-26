@@ -34,7 +34,12 @@ const WorkoutDisplay: React.FC<WorkoutDisplayProps> = ({ workouts, workout, onUp
 
   return (
     <Box sx={{ mt: 2 }}>
-      {Object.entries(displayWorkouts).map(([group, exercises]) => (
+      {Object.entries(displayWorkouts)
+        .sort(([a], [b]) => {
+          const order = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+          return (order[a as keyof typeof order] || 0) - (order[b as keyof typeof order] || 0);
+        })
+        .map(([group, exercises]) => (
         <Paper key={group} sx={{ p: 2, mb: 2 }}>
           <Typography variant="h6" gutterBottom>
             {group}
