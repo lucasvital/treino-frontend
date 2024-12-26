@@ -26,7 +26,7 @@ export const HomePage: React.FC = () => {
 
   const fetchWorkouts = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/workouts');
+      const response = await fetch(`https://${import.meta.env.VITE_API_URL}/api/workouts`);
       const data = await response.json();
       setWorkouts(data);
     } catch (error) {
@@ -40,7 +40,7 @@ export const HomePage: React.FC = () => {
 
   const handleWorkoutUpdate = async (workoutId: string, updatedWorkouts: { [key: string]: Exercise[] }) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/workouts/${workoutId}`, {
+      const response = await fetch(`https://${import.meta.env.VITE_API_URL}/api/workouts/${workoutId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
